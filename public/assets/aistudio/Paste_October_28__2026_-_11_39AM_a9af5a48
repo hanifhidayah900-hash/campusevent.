@@ -1,0 +1,891 @@
+# PROMPT LENGKAP PEMBUATAN WEBSITE CAMPUS EVENT
+
+## 1. Peran dan Tujuan Proyek
+
+Bertindaklah sebagai senior full-stack developer, UI/UX designer, database engineer, dan deployment engineer yang ahli dalam membangun aplikasi web modern.
+
+Buat sebuah aplikasi web bernama **CampusEvent — Sistem Pendaftaran Event Kampus Berbasis Web**.
+
+Aplikasi ini digunakan untuk memudahkan mahasiswa menemukan acara kampus, melihat informasi event, melakukan pendaftaran, mendapatkan tiket QR Code, serta melakukan check-in kehadiran. Admin bertanggung jawab mengelola seluruh event, pengguna, pendaftaran, kehadiran, dan laporan melalui satu dashboard terpusat.
+
+Website harus memiliki desain profesional, modern, menarik, responsif, aman, dan benar-benar fungsional. Jangan hanya membuat desain atau prototype statis. Bangun aplikasi lengkap dengan database online, autentikasi, validasi data, serta persiapan deployment ke Vercel.
+
+## 2. Teknologi yang Digunakan
+
+Gunakan teknologi berikut sebagai pilihan utama:
+
+- Frontend: React + TypeScript.
+- Build tool: Vite.
+- Styling: Tailwind CSS.
+- UI components: shadcn/ui.
+- Ikon: Lucide React.
+- Routing: React Router.
+- Backend dan database: Supabase dengan PostgreSQL.
+- Autentikasi: Supabase Auth.
+- QR Code generation: library QR Code yang kompatibel dengan React.
+- QR Code scanner: library pemindai QR yang kompatibel dengan browser.
+- Grafik statistik: Recharts.
+- Hosting dan deployment: Vercel.
+- Version control: GitHub.
+
+Jika platform AI website builder yang digunakan memiliki teknologi bawaan, sesuaikan implementasi tanpa mengorbankan fungsi utama, keamanan, integrasi database, dan kompatibilitas deployment.
+
+## 3. Desain UI/UX Website
+
+Buat desain yang terasa seperti produk SaaS profesional, bukan website tugas kuliah yang sederhana atau template generik.
+
+### Identitas visual
+
+- Nama produk: CampusEvent.
+- Gunakan warna utama navy atau biru tua.
+- Gunakan warna putih dan abu-abu muda sebagai warna dasar.
+- Gunakan biru terang atau violet sebagai aksen secukupnya.
+- Terapkan tipografi modern dan mudah dibaca.
+- Gunakan layout yang rapi, whitespace yang cukup, card dengan sudut membulat, border halus, dan bayangan lembut.
+- Gunakan ikon yang konsisten dan ilustrasi yang relevan dengan kegiatan mahasiswa.
+- Tambahkan animasi ringan pada hover, transisi halaman, dan interaksi tombol.
+- Hindari terlalu banyak gradient, warna mencolok, animasi berlebihan, dan elemen dekoratif yang mengganggu.
+- Pastikan desain konsisten di seluruh halaman.
+
+### Responsivitas
+
+Website wajib berfungsi dengan baik di:
+
+- Desktop.
+- Laptop.
+- Tablet.
+- Smartphone.
+
+Pada desktop, gunakan sidebar dashboard dan navigasi yang tertata. Pada smartphone, gunakan navigasi mobile yang nyaman, card satu kolom bila diperlukan, tombol yang mudah disentuh, dan tabel yang dapat digulir atau disesuaikan menjadi tampilan card.
+
+Semua teks antarmuka menggunakan Bahasa Indonesia yang baik dan konsisten.
+
+## 4. Role Pengguna
+
+Aplikasi hanya memiliki **dua role**, yaitu:
+
+### A. Mahasiswa
+
+Mahasiswa dapat:
+
+- Membuat akun dan login.
+- Melihat seluruh event yang tersedia.
+- Mencari dan memfilter event.
+- Melihat detail event.
+- Mendaftar event.
+- Melihat status pendaftaran.
+- Mendapatkan tiket QR Code setelah berhasil mendaftar.
+- Melihat tiket dan riwayat event.
+- Melihat status kehadiran.
+- Mengelola profil pribadi.
+
+### B. Admin
+
+Admin memiliki akses untuk mengelola seluruh sistem, meliputi:
+
+- Dashboard statistik.
+- CRUD event.
+- CRUD kategori event.
+- Manajemen akun mahasiswa.
+- Melihat dan mengelola pendaftaran peserta.
+- Melihat detail peserta.
+- Memindai dan memvalidasi tiket QR Code.
+- Mencatat kehadiran peserta.
+- Melihat laporan pendaftaran dan kehadiran.
+- Mengekspor laporan ke CSV.
+- Mengubah status event, termasuk pembatalan.
+- Mengelola profil admin.
+
+**Jangan membuat role panitia.** Semua fungsi pengelolaan event, peserta, check-in, dan laporan berada di bawah role admin. Jangan tampilkan menu, dashboard, route, atau hak akses panitia di bagian mana pun pada aplikasi.
+
+## 5. Halaman Publik dan Landing Page
+
+Buat landing page profesional sebagai halaman utama sebelum pengguna login.
+
+### Navbar
+
+Tampilkan:
+
+- Logo CampusEvent.
+- Beranda.
+- Jelajahi Event.
+- Tentang.
+- FAQ.
+- Tombol Masuk.
+- Tombol Daftar.
+
+Navbar harus responsif dan memiliki tampilan yang baik ketika halaman digulir.
+
+### Hero section
+
+Gunakan headline:
+
+**“Temukan Event Kampus, Perluas Pengalamanmu.”**
+
+Subheadline:
+
+“Jelajahi seminar, workshop, pelatihan, dan berbagai kegiatan kampus. Daftar dengan mudah dan simpan tiket digitalmu dalam satu platform.”
+
+Tambahkan:
+
+- Tombol utama “Jelajahi Event”.
+- Tombol sekunder “Daftar Sekarang”.
+- Ilustrasi atau visual kegiatan mahasiswa.
+- Elemen visual yang menonjolkan tiket digital atau QR Code.
+
+### Statistik
+
+Tampilkan statistik seperti:
+
+- Total event.
+- Total mahasiswa terdaftar.
+- Total pendaftaran.
+- Total event yang telah diselenggarakan.
+
+Semua statistik harus berasal dari database, bukan angka statis yang seolah-olah merupakan data nyata. Jika database masih kosong, tampilkan nilai nol atau empty state yang sesuai.
+
+### Event unggulan
+
+Tampilkan beberapa event unggulan dalam bentuk card yang berisi:
+
+- Gambar event.
+- Nama event.
+- Kategori.
+- Tanggal.
+- Lokasi.
+- Informasi kuota atau sisa kuota.
+- Status pendaftaran.
+- Tombol “Lihat Detail”.
+
+### Kategori event
+
+Tampilkan kategori seperti:
+
+- Seminar.
+- Workshop.
+- Pelatihan.
+- Kompetisi.
+- Kegiatan organisasi.
+- Kegiatan akademik.
+
+Kategori harus dapat dikelola admin melalui database.
+
+### Cara kerja
+
+Tampilkan tiga langkah sederhana:
+
+1. Temukan event yang menarik.
+2. Daftar menggunakan akun mahasiswa.
+3. Tunjukkan tiket QR Code saat check-in.
+
+### FAQ dan footer
+
+Buat FAQ mengenai pendaftaran, tiket, kuota, pembatalan event, dan check-in.
+
+Footer menampilkan logo, deskripsi singkat, tautan navigasi, dan informasi kontak yang dapat dikonfigurasi. Jangan mengarang alamat atau kontak resmi kampus.
+
+## 6. Autentikasi dan Akun
+
+Buat halaman login dan registrasi dengan desain modern.
+
+### Registrasi mahasiswa
+
+Field yang diperlukan:
+
+- Nama lengkap.
+- Email.
+- NIM.
+- Program studi.
+- Fakultas, jika diperlukan.
+- Password.
+- Konfirmasi password.
+
+Validasi seluruh input, format email, password, dan data wajib.
+
+NIM dan email harus unik sesuai aturan sistem.
+
+### Login
+
+Gunakan satu halaman login untuk mahasiswa dan admin. Setelah berhasil login, arahkan pengguna ke dashboard sesuai role yang tersimpan dan telah diverifikasi.
+
+- Mahasiswa diarahkan ke dashboard mahasiswa.
+- Admin diarahkan ke dashboard admin.
+
+Jangan memperbolehkan pengguna memilih role admin saat registrasi publik.
+
+Akun admin pertama harus dibuat melalui proses setup yang aman, misalnya melalui seed atau mekanisme administrasi yang berjalan di lingkungan tepercaya. Jangan membuat akun admin default dengan password yang ditanam di frontend.
+
+### Keamanan autentikasi
+
+- Gunakan Supabase Auth.
+- Terapkan validasi sesi.
+- Lindungi route berdasarkan role.
+- Jangan hanya menyembunyikan menu admin di frontend.
+- Verifikasi otorisasi pada database atau backend.
+- Sediakan logout.
+- Tampilkan pesan kesalahan yang jelas tanpa membocorkan informasi sensitif.
+
+## 7. Halaman Jelajahi Event
+
+Buat halaman khusus untuk menemukan event dengan tampilan modern.
+
+Fitur:
+
+- Grid card event.
+- Kolom pencarian berdasarkan nama event.
+- Filter kategori.
+- Filter status pendaftaran.
+- Filter tanggal bila memungkinkan.
+- Pengurutan event terbaru dan tanggal terdekat.
+- Pagination jika jumlah data besar.
+- Loading state.
+- Empty state ketika tidak ada event.
+- Error state dengan tombol coba lagi.
+
+Event yang dibatalkan, sudah selesai, atau pendaftarannya ditutup harus ditandai dengan status yang jelas.
+
+## 8. Halaman Detail Event
+
+Setiap event memiliki halaman detail dengan informasi:
+
+- Gambar banner.
+- Nama event.
+- Deskripsi lengkap.
+- Kategori.
+- Tanggal dan waktu mulai.
+- Tanggal dan waktu selesai.
+- Lokasi.
+- Nama penyelenggara atau unit penyelenggara jika tersedia.
+- Periode pendaftaran.
+- Kuota maksimum.
+- Jumlah peserta terdaftar.
+- Sisa kuota.
+- Status event.
+- Tombol pendaftaran.
+
+Tombol pendaftaran harus menyesuaikan status:
+
+- Pengguna belum login: arahkan ke login.
+- Pengguna sudah mendaftar: tampilkan status sudah terdaftar.
+- Kuota penuh: tampilkan informasi kuota penuh.
+- Pendaftaran belum dibuka: tampilkan informasi jadwal.
+- Pendaftaran ditutup: nonaktifkan pendaftaran.
+- Event dibatalkan: tampilkan informasi pembatalan.
+- Event selesai: tampilkan status event selesai.
+
+Semua pengecekan kuota dan status harus dilakukan kembali pada proses backend atau database, bukan hanya di frontend.
+
+## 9. Sistem Pendaftaran Event
+
+Buat sistem pendaftaran yang benar-benar terhubung dengan database.
+
+Ketika mahasiswa menekan tombol daftar:
+
+1. Pastikan sesi login valid.
+2. Pastikan event tersedia dan tidak dibatalkan.
+3. Pastikan periode pendaftaran masih terbuka.
+4. Pastikan mahasiswa belum mendaftar event yang sama.
+5. Pastikan kuota masih tersedia.
+6. Simpan pendaftaran secara aman.
+7. Buat token tiket unik.
+8. Tampilkan konfirmasi pendaftaran berhasil.
+9. Tampilkan tiket QR Code.
+
+Sistem wajib mencegah:
+
+- Pendaftaran ganda.
+- Pendaftaran event yang kuotanya penuh.
+- Pendaftaran setelah periode berakhir.
+- Pendaftaran event yang dibatalkan.
+- Kelebihan kuota akibat beberapa pengguna mendaftar bersamaan.
+
+Gunakan constraint database dan transaksi atau mekanisme atomik yang sesuai untuk menjaga integritas kuota.
+
+## 10. Tiket Digital dan QR Code
+
+Setiap pendaftaran yang berhasil mendapatkan tiket digital unik.
+
+Informasi tiket:
+
+- Nama mahasiswa.
+- NIM.
+- Nama event.
+- Tanggal event.
+- Lokasi event.
+- Kode tiket.
+- QR Code.
+- Status pendaftaran.
+- Status kehadiran.
+
+QR Code harus berisi token tiket acak yang unik atau identifier aman yang dapat divalidasi oleh server. Jangan memasukkan password, token autentikasi, atau data pribadi lengkap ke dalam QR Code.
+
+Buat halaman tiket dengan desain profesional, menyerupai tiket digital event sungguhan.
+
+Fitur:
+
+- Menampilkan QR Code.
+- Menampilkan informasi event.
+- Menampilkan status tiket.
+- Menampilkan status kehadiran.
+- Tombol untuk mencetak atau menyimpan tiket sebagai PDF jika implementasinya mendukung.
+- Pesan yang jelas jika tiket tidak valid atau pendaftaran dibatalkan.
+
+Tiket harus tetap dapat dibuka kembali dari dashboard mahasiswa.
+
+## 11. Dashboard Mahasiswa
+
+Buat dashboard mahasiswa dengan sidebar atau navigasi yang nyaman.
+
+### Ringkasan dashboard
+
+Tampilkan:
+
+- Total event yang diikuti.
+- Event yang akan datang.
+- Event yang sudah selesai.
+- Total kehadiran, jika tersedia.
+
+### Menu dashboard
+
+1. Ringkasan.
+2. Jelajahi Event.
+3. Event Saya.
+4. Tiket Saya.
+5. Riwayat Event.
+6. Profil Saya.
+7. Keluar.
+
+### Event Saya
+
+Tampilkan event yang telah didaftarkan dalam bentuk card atau tabel responsif.
+
+Informasi:
+
+- Nama event.
+- Tanggal.
+- Lokasi.
+- Status pendaftaran.
+- Status kehadiran.
+- Tombol lihat tiket.
+- Tombol lihat detail.
+
+Tampilkan empty state yang menarik jika mahasiswa belum mendaftar event apa pun.
+
+### Profil mahasiswa
+
+Mahasiswa dapat melihat dan memperbarui data profil yang diizinkan, seperti nama dan program studi.
+
+NIM dan email harus mengikuti aturan perubahan yang aman dan konsisten dengan sistem autentikasi.
+
+## 12. Dashboard Admin
+
+Buat dashboard admin yang profesional dan menjadi pusat pengelolaan seluruh aplikasi.
+
+### Statistik utama
+
+Tampilkan card:
+
+- Total event.
+- Event aktif.
+- Total mahasiswa.
+- Total pendaftaran.
+- Total peserta hadir.
+- Persentase kehadiran.
+
+Angka harus dihitung dari database menggunakan query yang sesuai.
+
+### Visualisasi
+
+Gunakan grafik yang informatif:
+
+- Grafik pendaftaran berdasarkan waktu.
+- Grafik peserta berdasarkan event.
+- Perbandingan peserta terdaftar dan hadir.
+- Distribusi event berdasarkan kategori.
+
+Gunakan Recharts jika sesuai dengan stack proyek.
+
+Pastikan grafik tidak menggunakan data palsu setelah database terhubung. Jika belum ada data, tampilkan empty state.
+
+### Menu admin
+
+1. Dashboard.
+2. Manajemen Event.
+3. Kategori Event.
+4. Data Mahasiswa.
+5. Pendaftaran Peserta.
+6. Scan QR Check-in.
+7. Laporan.
+8. Profil Admin.
+9. Keluar.
+
+Semua menu tersebut hanya dapat digunakan oleh admin yang terautentikasi dan memiliki otorisasi yang sesuai.
+
+## 13. Manajemen Event oleh Admin
+
+Buat fitur CRUD lengkap untuk event.
+
+### Tambah event
+
+Field:
+
+- Nama event.
+- Slug atau kode event yang unik.
+- Kategori.
+- Deskripsi.
+- Gambar banner atau URL gambar.
+- Tanggal dan waktu mulai.
+- Tanggal dan waktu selesai.
+- Lokasi.
+- Kuota.
+- Periode pembukaan pendaftaran.
+- Periode penutupan pendaftaran.
+- Status event.
+- Status publikasi.
+
+### Fitur lainnya
+
+- Melihat seluruh event.
+- Mencari event.
+- Memfilter berdasarkan kategori atau status.
+- Mengedit event.
+- Menghapus event dengan konfirmasi.
+- Membatalkan event.
+- Menutup pendaftaran.
+- Melihat detail event.
+- Melihat daftar peserta per event.
+
+Validasi tanggal, kuota, field wajib, dan aturan perubahan event.
+
+Jangan menghapus riwayat pendaftaran dan kehadiran secara sembarangan. Gunakan aturan penghapusan yang menjaga integritas data dan riwayat laporan.
+
+## 14. Manajemen Kategori
+
+Admin dapat:
+
+- Menambah kategori.
+- Melihat daftar kategori.
+- Mengedit kategori.
+- Menghapus kategori jika tidak sedang digunakan atau jika prosesnya aman.
+
+Kategori yang sedang digunakan oleh event tidak boleh menyebabkan kerusakan relasi database ketika dihapus.
+
+## 15. Manajemen Mahasiswa dan Pendaftaran
+
+Admin dapat melihat:
+
+- Nama mahasiswa.
+- NIM.
+- Email.
+- Program studi.
+- Tanggal pendaftaran.
+- Jumlah event yang diikuti.
+- Riwayat pendaftaran.
+
+Fitur:
+
+- Pencarian mahasiswa.
+- Filter program studi jika tersedia.
+- Melihat detail mahasiswa.
+- Melihat riwayat event mahasiswa.
+- Melihat peserta berdasarkan event.
+- Mencari berdasarkan nama, NIM, atau event.
+- Melihat status tiket dan kehadiran.
+
+Batasi perubahan data mahasiswa agar tidak merusak akun autentikasi maupun riwayat pendaftaran.
+
+## 16. Scan QR Code dan Check-in
+
+Buat halaman check-in khusus admin.
+
+### Fitur pemindaian
+
+- Mengakses kamera perangkat setelah pengguna memberikan izin.
+- Memindai QR Code tiket.
+- Menampilkan hasil validasi secara langsung.
+- Menyediakan input kode tiket manual jika kamera tidak tersedia atau gagal.
+- Menampilkan status valid, tidak valid, sudah digunakan, dibatalkan, atau tidak ditemukan.
+- Menampilkan nama peserta dan event yang sesuai setelah tiket berhasil divalidasi.
+
+### Proses check-in
+
+Ketika QR Code dipindai:
+
+1. Kirim token tiket ke backend atau database melalui mekanisme yang aman.
+2. Verifikasi bahwa tiket terdaftar.
+3. Verifikasi bahwa tiket terkait dengan event yang benar.
+4. Verifikasi status pendaftaran.
+5. Verifikasi bahwa tiket belum digunakan untuk check-in.
+6. Simpan waktu kehadiran.
+7. Tampilkan hasil check-in yang jelas.
+
+Cegah check-in ganda menggunakan validasi database dan operasi atomik. Jangan mengandalkan pemeriksaan frontend saja.
+
+Jika tiket sudah pernah digunakan, tampilkan pesan “Peserta sudah melakukan check-in” tanpa mengubah waktu kehadiran sebelumnya.
+
+Jika izin kamera ditolak, tampilkan instruksi yang jelas dan tetap sediakan input kode tiket manual.
+
+## 17. Laporan dan Ekspor Data
+
+Buat halaman laporan admin yang terhubung dengan database.
+
+### Laporan event
+
+Tampilkan:
+
+- Nama event.
+- Tanggal.
+- Kuota.
+- Jumlah peserta terdaftar.
+- Jumlah peserta hadir.
+- Jumlah peserta yang belum hadir.
+- Persentase kehadiran.
+- Status event.
+
+### Laporan peserta
+
+Tampilkan:
+
+- Nama peserta.
+- NIM.
+- Program studi.
+- Email jika diperlukan.
+- Nama event.
+- Waktu pendaftaran.
+- Status pendaftaran.
+- Status kehadiran.
+- Waktu check-in.
+
+### Fitur laporan
+
+- Filter berdasarkan event.
+- Filter tanggal jika sesuai.
+- Filter status kehadiran.
+- Pencarian peserta.
+- Ringkasan statistik.
+- Ekspor CSV.
+- Tampilan cetak yang rapi.
+
+Ekspor hanya data yang memang dapat diakses admin. Pastikan data pada laporan sesuai dengan database dan tidak berasal dari data statis.
+
+## 18. Struktur Database Supabase
+
+Rancang database PostgreSQL yang rapi, relasional, dan aman.
+
+### Tabel `profiles`
+
+Kolom yang disarankan:
+
+- `id`: UUID, primary key dan terkait dengan pengguna Supabase Auth.
+- `full_name`: nama lengkap.
+- `email`: email pengguna.
+- `nim`: NIM mahasiswa, nullable untuk admin bila tidak relevan.
+- `study_program`: program studi.
+- `faculty`: fakultas, opsional.
+- `role`: `mahasiswa` atau `admin`.
+- `created_at`: waktu pembuatan.
+- `updated_at`: waktu pembaruan.
+
+Role admin harus ditetapkan melalui mekanisme tepercaya. Pengguna publik tidak boleh bisa mengubah role mereka sendiri menjadi admin.
+
+### Tabel `categories`
+
+Kolom:
+
+- `id`: UUID.
+- `name`: nama kategori.
+- `slug`: slug unik.
+- `description`: deskripsi opsional.
+- `created_at`: waktu pembuatan.
+
+### Tabel `events`
+
+Kolom:
+
+- `id`: UUID.
+- `admin_id`: ID admin pembuat.
+- `category_id`: relasi kategori.
+- `name`: nama event.
+- `slug`: slug unik.
+- `description`: deskripsi.
+- `banner_url`: URL gambar.
+- `location`: lokasi.
+- `start_at`: tanggal dan waktu mulai.
+- `end_at`: tanggal dan waktu selesai.
+- `registration_open_at`: pembukaan pendaftaran.
+- `registration_close_at`: penutupan pendaftaran.
+- `quota`: kuota.
+- `status`: status event.
+- `is_published`: status publikasi.
+- `created_at`: waktu pembuatan.
+- `updated_at`: waktu pembaruan.
+
+### Tabel `registrations`
+
+Kolom:
+
+- `id`: UUID.
+- `event_id`: relasi event.
+- `student_id`: relasi profil mahasiswa.
+- `ticket_token`: token tiket unik dan aman.
+- `status`: status pendaftaran.
+- `registered_at`: waktu pendaftaran.
+- `checked_in_at`: waktu check-in, nullable.
+- `created_at`: waktu pembuatan.
+
+Tambahkan unique constraint agar seorang mahasiswa tidak dapat mendaftar event yang sama lebih dari satu kali.
+
+Tambahkan indeks untuk kolom pencarian dan relasi yang sering digunakan.
+
+Jika diperlukan, tambahkan tabel `attendance_logs` atau audit log untuk mencatat aktivitas penting secara terstruktur.
+
+Pastikan semua relasi, constraint, indeks, serta aturan penghapusan dan pembaruan didefinisikan dengan benar.
+
+## 19. Keamanan Database dan Backend
+
+Terapkan Row Level Security (RLS) pada seluruh tabel yang membutuhkan perlindungan.
+
+Aturan akses minimum:
+
+- Pengguna yang belum login hanya dapat melihat event yang dipublikasikan dan kategori yang tersedia.
+- Mahasiswa hanya dapat melihat dan memperbarui profil yang diizinkan miliknya.
+- Mahasiswa hanya dapat melihat pendaftaran dan tiket miliknya sendiri.
+- Mahasiswa tidak boleh mengubah role menjadi admin.
+- Mahasiswa tidak boleh mengubah status check-in secara langsung.
+- Admin yang terotorisasi dapat mengelola event, kategori, peserta, pendaftaran, dan laporan.
+- Operasi sensitif seperti validasi tiket, pembaruan kuota, dan perubahan status kehadiran harus dilakukan dengan otorisasi yang tepat.
+
+Jangan menaruh Supabase service role key atau secret key di frontend.
+
+Gunakan database function, transaksi, atau backend endpoint yang aman untuk operasi yang membutuhkan otorisasi dan konsistensi data.
+
+Jangan mengandalkan keamanan route frontend sebagai satu-satunya perlindungan.
+
+## 20. Contoh Data Awal
+
+Sediakan seed data untuk kebutuhan pengujian dan demonstrasi, misalnya:
+
+1. Seminar Artificial Intelligence.
+2. Workshop Web Development.
+3. Pelatihan UI/UX Design.
+4. Seminar Digital Career.
+5. Kompetisi Inovasi Mahasiswa.
+
+Gunakan data contoh yang jelas sebagai data demo, bukan klaim bahwa event tersebut benar-benar diselenggarakan oleh kampus tertentu.
+
+Sediakan petunjuk untuk membuat akun admin pertama secara aman. Jangan menanam password admin yang sama untuk semua instalasi atau mengekspos kredensial dalam source code.
+
+Pastikan aplikasi tetap berjalan dengan baik jika database masih kosong.
+
+## 21. Loading, Error, dan Empty States
+
+Semua halaman harus menangani kondisi berikut dengan baik:
+
+- Data sedang dimuat.
+- Data berhasil dimuat.
+- Database kosong.
+- Data tidak ditemukan.
+- Pengguna belum login.
+- Pengguna tidak memiliki izin.
+- Koneksi gagal.
+- Form tidak valid.
+- Pendaftaran berhasil atau gagal.
+- Kuota penuh.
+- Tiket QR tidak valid.
+- Check-in berhasil atau sudah pernah dilakukan.
+
+Gunakan toast atau notifikasi yang konsisten, pesan yang mudah dipahami, serta tombol aksi yang relevan.
+
+Jangan menampilkan error teknis sensitif kepada pengguna biasa.
+
+## 22. Deployment ke Vercel
+
+Siapkan proyek agar benar-benar dapat di-deploy ke Vercel.
+
+### Persiapan proyek
+
+- Pastikan struktur proyek rapi.
+- Pastikan seluruh dependency tercantum dalam file konfigurasi.
+- Pastikan perintah instalasi dan build berjalan dengan benar.
+- Pastikan TypeScript dan proses build tidak menghasilkan error.
+- Tambahkan `.gitignore`.
+- Tambahkan `.env.example` tanpa kredensial asli.
+- Buat `README.md` yang berisi petunjuk instalasi dan deployment.
+- Buat `vercel.json` hanya jika diperlukan.
+- Konfigurasikan routing SPA agar URL halaman dapat dibuka langsung dan tidak menghasilkan 404.
+
+### Environment variables
+
+Jika menggunakan Vite dan Supabase, siapkan variabel yang diperlukan, misalnya:
+
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
+
+Sesuaikan nama variabel dengan implementasi akhir.
+
+Tambahkan environment variables melalui pengaturan proyek Vercel untuk environment yang sesuai, seperti Production dan Preview.
+
+Variabel dengan prefix frontend hanya boleh berisi nilai yang memang aman untuk publik. Jangan memasukkan password database, service role key, atau secret key ke dalam variabel frontend.
+
+Jika proyek membutuhkan fungsi server-side, konfigurasi secret harus dilakukan melalui environment variables server-side yang sesuai.
+
+### Langkah deployment
+
+Berikan panduan langkah demi langkah:
+
+1. Simpan source code di repository GitHub.
+2. Login ke Vercel menggunakan akun GitHub.
+3. Pilih Add New Project.
+4. Impor repository CampusEvent.
+5. Periksa framework preset, build command, dan output directory.
+6. Tambahkan environment variables.
+7. Jalankan deployment.
+8. Periksa build log jika terjadi kegagalan.
+9. Konfigurasikan URL produksi dan redirect autentikasi di Supabase.
+10. Periksa konfigurasi domain dan URL callback.
+11. Uji aplikasi melalui URL Vercel.
+12. Pastikan perubahan yang dikirim ke branch yang sesuai dapat melalui proses deployment dengan benar.
+
+Jangan mengklaim website sudah online sebelum deployment benar-benar berhasil.
+
+Jika platform AI builder tidak dapat mengakses Vercel atau GitHub secara langsung, siapkan semua file dan berikan panduan yang dapat diikuti pengguna untuk melakukan deployment sendiri.
+
+## 23. Pengujian Wajib
+
+Sebelum menyatakan proyek selesai, uji seluruh alur utama:
+
+### Autentikasi
+
+- Registrasi mahasiswa.
+- Login mahasiswa.
+- Login admin.
+- Logout.
+- Akses halaman sesuai role.
+- Penolakan akses mahasiswa ke halaman admin.
+- Pencegahan perubahan role tanpa izin.
+
+### Event
+
+- Admin menambah event.
+- Admin mengedit event.
+- Admin mengubah status event.
+- Admin menghapus event sesuai aturan integritas data.
+- Mahasiswa melihat event.
+- Pencarian dan filter event berfungsi.
+
+### Pendaftaran
+
+- Mahasiswa berhasil mendaftar.
+- Pendaftaran ganda ditolak.
+- Pendaftaran ketika kuota penuh ditolak.
+- Pendaftaran setelah penutupan ditolak.
+- Pendaftaran event yang dibatalkan ditolak.
+- Kuota tetap konsisten saat terjadi pendaftaran bersamaan.
+
+### Tiket dan check-in
+
+- Tiket QR Code berhasil dibuat.
+- Tiket mahasiswa dapat dibuka kembali.
+- QR Code valid berhasil dipindai.
+- QR Code tidak valid ditolak.
+- Tiket yang sudah digunakan tidak dapat check-in ulang.
+- Input kode manual berfungsi.
+- Data kehadiran tersimpan di database.
+
+### Laporan
+
+- Statistik sesuai data database.
+- Laporan peserta sesuai data pendaftaran.
+- Status kehadiran sesuai catatan check-in.
+- Ekspor CSV berhasil.
+- Filter dan pencarian berfungsi.
+
+### Deployment
+
+- Build berhasil.
+- Website dapat dibuka dari URL Vercel.
+- Refresh halaman tidak menyebabkan 404.
+- Login dan redirect berfungsi di domain produksi.
+- Database online dapat diakses sesuai kebijakan keamanan.
+- Semua fitur utama tetap berfungsi di perangkat desktop dan smartphone.
+
+## 24. Dokumentasi Proyek
+
+Sertakan README yang menjelaskan:
+
+- Deskripsi aplikasi.
+- Daftar fitur.
+- Teknologi yang digunakan.
+- Struktur folder.
+- Cara menjalankan proyek secara lokal.
+- Cara menyiapkan Supabase.
+- Cara menjalankan SQL migration dan seed data.
+- Cara mengonfigurasi environment variables.
+- Cara membuat akun admin pertama.
+- Cara menjalankan pengujian.
+- Cara deployment ke Vercel.
+- Cara mengatasi masalah build atau koneksi database yang umum.
+
+Jangan memasukkan kredensial asli ke dokumentasi.
+
+## 25. Batasan Fitur
+
+Untuk menjaga ruang lingkup proyek tetap jelas, **jangan menambahkan fitur berikut kecuali diminta kemudian**:
+
+- Pembayaran online.
+- Integrasi payment gateway.
+- AI atau chatbot.
+- Aplikasi mobile native.
+- Integrasi WhatsApp atau layanan pihak ketiga lainnya.
+- Pembuatan sertifikat otomatis.
+- Role panitia.
+- Fitur lain yang tidak berkaitan dengan sistem pendaftaran event, tiket, check-in, dan laporan.
+
+## 26. Standar Hasil Akhir
+
+Saya menginginkan hasil berupa aplikasi CampusEvent yang:
+
+1. Memiliki UI/UX modern dan profesional.
+2. Memiliki dua role saja: mahasiswa dan admin.
+3. Menggunakan database online yang benar-benar berfungsi.
+4. Memiliki autentikasi dan otorisasi yang aman.
+5. Memiliki CRUD event dan kategori.
+6. Memiliki sistem pendaftaran dengan kontrol kuota.
+7. Memiliki tiket digital dengan QR Code.
+8. Memiliki pemindaian QR dan validasi check-in.
+9. Memiliki dashboard mahasiswa dan admin.
+10. Memiliki laporan dan ekspor CSV.
+11. Responsif di desktop dan perangkat mobile.
+12. Memiliki loading, error, dan empty states.
+13. Memiliki source code yang rapi dan mudah dikembangkan.
+14. Memiliki dokumentasi instalasi dan konfigurasi.
+15. Siap dibangun dan di-deploy ke Vercel.
+16. Tetap menggunakan Supabase untuk database dan autentikasi apabila stack yang dipilih mendukungnya.
+17. Tidak menggunakan data statis sebagai pengganti fitur backend yang seharusnya berfungsi.
+
+## 27. Instruksi Pengerjaan
+
+Kerjakan proyek secara menyeluruh dan terstruktur.
+
+Urutan pengerjaan yang diharapkan:
+
+1. Buat struktur aplikasi dan desain UI/UX.
+2. Buat skema database dan migration.
+3. Implementasikan autentikasi dan hak akses.
+4. Implementasikan halaman publik dan pencarian event.
+5. Implementasikan dashboard mahasiswa.
+6. Implementasikan dashboard admin.
+7. Implementasikan CRUD event, kategori, dan manajemen peserta.
+8. Implementasikan pendaftaran, kuota, dan tiket QR Code.
+9. Implementasikan scan QR dan check-in.
+10. Implementasikan laporan dan ekspor CSV.
+11. Terapkan kebijakan keamanan database.
+12. Uji seluruh alur aplikasi.
+13. Perbaiki error dan masalah responsivitas.
+14. Siapkan dokumentasi dan konfigurasi deployment Vercel.
+
+Jangan berhenti setelah membuat landing page. Jangan membuat tombol yang hanya menjadi hiasan. Semua tombol, form, navigasi, tabel, filter, dan fitur utama harus memiliki fungsi yang sesuai.
+
+Jika ada konfigurasi eksternal yang membutuhkan tindakan pengguna, seperti membuat proyek Supabase, menambahkan environment variables, menghubungkan GitHub, atau melakukan deployment Vercel, jelaskan langkahnya dengan jelas.
+
+**Prioritas utama: website terlihat premium, seluruh fitur inti benar-benar bekerja, data tersimpan dengan aman, dan aplikasi dapat dijalankan serta di-deploy ke Vercel tanpa error.**

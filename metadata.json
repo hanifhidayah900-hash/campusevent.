@@ -1,0 +1,6 @@
+{
+  "name": "CampusEvent — Sistem Pendaftaran Event Kampus",
+  "description": "Sistem Pendaftaran Event Kampus Berbasis Web dengan pendaftaran acara mahasiswa, tiket QR Code digital, manajemen kuota, dan check-in terpusat.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
